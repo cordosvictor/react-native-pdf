@@ -47,6 +47,7 @@ interface Props {
     fitPolicy?: number,
     trustAllCerts?: boolean,
     singlePage?: boolean,
+    disableScroll?: boolean,
     onLoadProgress?: (percent: number,) => void,
     onLoadComplete?: (numberOfPages: number, path: string, size: {height: number, width: number}, tableContents?: TableContent[]) => void,
     onPageChanged?: (page: number, numberOfPages: number) => void,

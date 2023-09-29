@@ -56,6 +56,7 @@ export default class Pdf extends Component {
         fitPolicy: PropTypes.number,
         trustAllCerts: PropTypes.bool,
         singlePage: PropTypes.bool,
+        disableScroll: PropTypes.bool,
         onLoadComplete: PropTypes.func,
         onPageChanged: PropTypes.func,
         onError: PropTypes.func,
@@ -91,6 +92,7 @@ export default class Pdf extends Component {
         trustAllCerts: true,
         usePDFKit: true,
         singlePage: false,
+        disableScroll: false,
         onLoadProgress: (percent) => {
         },
         onLoadComplete: (numberOfPages, path) => {

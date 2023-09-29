@@ -38,6 +38,7 @@ export default class PdfView extends Component {
         page: PropTypes.number,
         currentPage: PropTypes.number,
         singlePage: PropTypes.bool,
+        disableScroll: PropTypes.bool,
         onPageSingleTap: PropTypes.func,
         onScaleChanged: PropTypes.func,
     };
@@ -57,6 +58,7 @@ export default class PdfView extends Component {
         currentPage: -1,
         enablePaging: false,
         singlePage: false,
+        disableScroll: false,
         onPageSingleTap: (page, x, y) => {
         },
         onScaleChanged: (scale) => {
@@ -367,7 +369,7 @@ export default class PdfView extends Component {
                 viewabilityConfig={VIEWABILITYCONFIG}
                 onScroll={this._onScroll}
                 onContentSizeChange={this._onListContentSizeChange}
-                scrollEnabled={!this.props.singlePage}
+                scrollEnabled={!this.props.singlePage && !this.props.disableScroll}
             />
         );
 
