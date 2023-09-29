@@ -41,6 +41,7 @@ UIView
 @property(nonatomic) BOOL showsVerticalScrollIndicator;
 @property(nonatomic) BOOL showsHorizontalScrollIndicator;
 @property(nonatomic) BOOL enablePaging;
+@property(nonatomic) BOOL disableScroll;
 @property(nonatomic) BOOL enableRTL;
 @property(nonatomic) BOOL enableAnnotationRendering;
 @property(nonatomic) int fitPolicy;

@@ -151,6 +151,10 @@ using namespace facebook::react;
         _singlePage = newProps.singlePage;
         [updatedPropNames addObject:@"singlePage"];
     }
+    if (_disableScroll != newProps.disableScroll) {
+        _disableScroll = newProps.disableScroll;
+        [updatedPropNames addObject:@"disableScroll"];
+    }
     if (_showsHorizontalScrollIndicator != newProps.showsHorizontalScrollIndicator) {
         _showsHorizontalScrollIndicator = newProps.showsHorizontalScrollIndicator;
         [updatedPropNames addObject:@"showsHorizontalScrollIndicator"];
@@ -243,6 +247,7 @@ using namespace facebook::react;
     _fitPolicy = 2;
     _spacing = 10;
     _singlePage = NO;
+    _disableScroll = NO;
     _showsHorizontalScrollIndicator = YES;
     _showsVerticalScrollIndicator = YES;
 
@@ -450,6 +455,14 @@ using namespace facebook::react;
                 _pdfView.userInteractionEnabled = NO;
             } else {
                 _pdfView.displayMode = kPDFDisplaySinglePageContinuous;
+                _pdfView.userInteractionEnabled = YES;
+            }
+        }
+
+        if (_pdfDocument && ([changedProps containsObject:@"path"] || [changedProps containsObject:@"disableScroll"])) {
+            if (_disableScroll) {
+                _pdfView.userInteractionEnabled = NO;
+            } else {
                 _pdfView.userInteractionEnabled = YES;
             }
         }
@@ -841,12 +854,12 @@ using namespace facebook::react;
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 
 {
-    return !_singlePage;
+    return !_singlePage && !_disableScroll;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    return !_singlePage;
+    return !_singlePage && !_disableScroll;
 }
 
 @end
